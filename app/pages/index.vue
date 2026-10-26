@@ -2,7 +2,7 @@
   <div class="dark:text-white flex flex-col h-screen">
     <div class="flex mt-2">
       <img
-        src="/apple-touch-icon.png"
+        :src="`${useRuntimeConfig().app.baseURL}apple-touch-icon.png`"
         alt="Logo"
         class="h-16 ml-2"
         style="animation: spin 10s linear infinite"

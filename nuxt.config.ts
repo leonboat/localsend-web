@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const baseURL = process.env.NUXT_APP_BASE_URL || "/";
+
 export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   modules: [
@@ -15,6 +17,7 @@ export default defineNuxtConfig({
     },
   },
   app: {
+    baseURL,
     head: {
       meta: [
         {
@@ -25,18 +28,18 @@ export default defineNuxtConfig({
       link: [
         {
           rel: "icon",
-          href: "/favicon.ico",
+          href: `${baseURL}favicon.ico`,
         },
         {
           rel: "apple-touch-icon",
           sizes: "180x180",
-          href: "/apple-touch-icon.png",
+          href: `${baseURL}apple-touch-icon.png`,
         },
       ],
     },
   },
   i18n: {
-    baseUrl: "https://web.localsend.org",
+    baseUrl: process.env.SITE_URL || "https://web.localsend.org",
     strategy: "prefix_except_default",
     defaultLocale: "en",
     locales: [
@@ -142,9 +145,9 @@ export default defineNuxtConfig({
       short_name: "LocalSend Web",
       theme_color: "#111827",
       background_color: "#111827",
-      scope: "/",
+      scope: baseURL,
       id: "localsend",
-      start_url: "/?pwa=1",
+      start_url: `${baseURL}?pwa=1`,
       icons: [
         {
           src: "apple-touch-icon.png",
@@ -161,7 +164,7 @@ export default defineNuxtConfig({
     },
     workbox: {
       globPatterns: ["/", "**/*.{js,css,html,png,svg,ico}"],
-      navigateFallback: "/",
+      navigateFallback: `${baseURL}index.html`,
       runtimeCaching: [
         {
           urlPattern: /^https:\/\/api\.iconify\.design\/.*'/i,
